@@ -1,3 +1,4 @@
+from warnings import catch_warnings
 from fastapi import FastAPI, Query
 from app.twitterapi import *
 from app.texttools import *
@@ -21,17 +22,30 @@ async def get_model(model_name: ModelName):
 
 @app.get("/term/")
 async def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
+	try:	
+		if term:
+			raw_results = searchTweets(term)
+			processed_results = [process_text(tweet) for tweet in raw_results]
+
+			sentiment = get_avg_sentiment(processed_results)	
+			keywords = get_keywords(processed_results,10)
+
+			results = {"sentiment" : sentiment,
+				"keywords":keywords
+			}
+			return results
+		else:
+			return {"message":"nothing to seach"}
+	except Exception as e:
+		return {"error":e}
+
+@app.get("/tweets/")
+async def get_tweets(term: str | None = Query(default=None, min_length=3, max_length=25)):
 	if term:
 		raw_results = searchTweets(term)
-		results = [process_text(tweet) for tweet in raw_results]
-
-		sentiment = get_avg_sentiment(results)	
-		keywords = get_keywords(results,10)
-
-		return [sentiment,keywords]
+		return raw_results
 	else:
-		results = {"message":"nothing to seach"}
-		return results
+		return {'message':'no results'}
 
 
 #POST

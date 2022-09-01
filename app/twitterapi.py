@@ -1,6 +1,6 @@
 import requests
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -12,13 +12,17 @@ def searchTweets(search_term:str):
 
   payload={}
   headers = {
-    'Authorization':os.getenv('BEARER_TOKEN'),
+    'Authorization': os.getenv("BEARER_TOKEN"),
     'Cookie': 'guest_id=v1%3A165292464833657250; guest_id_ads=v1%3A165292464833657250; guest_id_marketing=v1%3A165292464833657250; personalization_id="v1_D50leSEsdlQN9nTvwQ6B+g=="'
     }
-  response = requests.request("GET", url, headers=headers, data=payload).json()['includes']['tweets']
 
-  tweets = [i['text'] for i in response]
-  
-  return tweets
+  try:
+    response = requests.request("GET", url, headers=headers, data=payload).json()['includes']['tweets']
+    tweets = [i['text'] for i in response]
+    return tweets
+  except:
+    error_message = "An error occured"
+    return error_message
+   
 
 
