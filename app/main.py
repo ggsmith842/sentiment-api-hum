@@ -1,4 +1,3 @@
-from warnings import catch_warnings
 from fastapi import FastAPI, Query
 from app.twitterapi import *
 from app.texttools import *
@@ -11,14 +10,6 @@ app = FastAPI()
 @app.get("/")
 async def get_index():
 	return {"message":"Landing Page Goes Here"}
-
-@app.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-	if model_name == ModelName.alexnet:
-		return {"model_name": model_name, "message": "Deep Learning ftw"}
-	elif model_name.value == "lenet":
-		return {"mode_name": model_name, "message": "LeCNN all the images"}
-	return {"model_name": model_name, "messasge": "Have some residuals"}
 
 @app.get("/term/")
 async def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
@@ -46,6 +37,14 @@ async def get_tweets(term: str | None = Query(default=None, min_length=3, max_le
 		return raw_results
 	else:
 		return {'message':'no results'}
+
+@app.get("/trends/")
+async def get_trends():
+	try:
+		response = call_trends()
+		return response
+	except:
+		return {'message':'An error occured'}
 
 
 #POST
