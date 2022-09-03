@@ -1,5 +1,5 @@
 from re import template
-from fastapi import FastAPI, Query, Request
+from fastapi import FastAPI, Query, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from app.twitterapi import *
@@ -21,10 +21,21 @@ templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 #Get methods
 @app.get("/",response_class=HTMLResponse)
 async def get_index(request: Request):
-	return  templates.TemplateResponse("index.html", {"request":request}) #,{"message":"Landing Page Goes Here"}
+	return  templates.TemplateResponse("base.html", {"request":request}) #,{"message":"Landing Page Goes Here"}
+
+@app.get("/form")
+def form_post(request: Request):
+	result = "Type a search term"
+	return templates.TemplateResponse("index.html",context={'request':request,'result':result})
+
+@app.post("/form")
+def form_post(request: Request, term: str = Form(...)):
+	result = get_results(term)
+	return templates.TemplateResponse("index.html",context={'request':request,'result':result})
+
 
 @app.get("/term/")
-async def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
+def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
 	try:	
 		if term:
 			raw_results = searchTweets(term)
@@ -36,7 +47,7 @@ async def get_results(term: str | None =  Query(default = None,min_length=3, max
 			results = {"sentiment" : sentiment,
 				"keywords":keywords
 			}
-			return results
+			return {"sentiment" : results}
 		else:
 			return {"message":"nothing to seach"}
 	except Exception as e:
