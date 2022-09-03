@@ -1,15 +1,27 @@
-from fastapi import FastAPI, Query
+from re import template
+from fastapi import FastAPI, Query, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from app.twitterapi import *
 from app.texttools import *
 from app.schemas import *
+from pathlib import Path
+
+
+
+BASE_DIR = Path(__file__).resolve().parent
 
 #declare app
 app = FastAPI()
 
+#set templates directory
+templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
+
+
 #Get methods
-@app.get("/")
-async def get_index():
-	return {"message":"Landing Page Goes Here"}
+@app.get("/",response_class=HTMLResponse)
+async def get_index(request: Request):
+	return  templates.TemplateResponse("index.html", {"request":request}) #,{"message":"Landing Page Goes Here"}
 
 @app.get("/term/")
 async def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
