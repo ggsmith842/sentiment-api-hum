@@ -1,0 +1,33 @@
+.card{
+    box-shadow: 0 16px 48px #E3E7EB;
+    border-radius: 10px;
+}
+
+.card-body {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-width: 0%;
+}
+
+.nav {
+    font-size: large;
+}
+.sm-list {
+    list-style: none;
+    display: inline-flex;;
+    margin: 5px;
+    padding: 2px;
+}
+
+.h2 {
+    text-align: center;
+    align-content: center;
+}
+
+.card-results {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    padding: 20px;;
+
+}
