@@ -29,8 +29,9 @@ def get_keywords(sentences: list,topn:int = 5):
     avg_keyword_len = floor(mean([len(i) for i in keywords]))
     best_keywords = [i for i in keywords if len(i)>avg_keyword_len and len(i)>3]
     tag=pos_tag(best_keywords)
-    filtered_keywords = [i[0] for i in tag if i[1] not in ['VBG','VBD','RB','PDT','POS','WDT','WP','WRB',]]    
-    return filtered_keywords[:topn]
+    filtered_keywords = list({i[0] for i in tag if i[1] not in ['VBG','VBD','RB','PDT','POS','WDT','WP','WRB',]})
+    topn = min(len(filtered_keywords),topn) 
+    return filtered_keywords[:topn+1]
 
 #get sentiment
 def get_avg_sentiment(tweets):

@@ -21,8 +21,8 @@ def searchTweets(search_term:str):
     response = requests.request("GET", url, headers=headers, data=payload).json()['includes']['tweets']
     tweets = [i['text'] for i in response]
     return tweets
-  except:
-    error_message = "An error occured"
+  except Exception as e:
+    error_message = f"An error occured in searchTweets(): {e}"
     return error_message
    
 

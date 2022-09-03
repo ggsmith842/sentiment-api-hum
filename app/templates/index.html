@@ -1,22 +1,40 @@
 {% extends "base.html" %} 
 
 {% block content %}
-
+<link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
 <div class="container py-5 h-100">
-  <div class="row d-flex align-items-center justify-content-center h-100">
+  <!-- <div class="row d-flex align-items-center justify-content-center h-100"> -->
     <!-- side image -->
-    <div class="col-md-8 col-lg-7 col-xl-6">
+    <!-- <div class="col-md-8 col-lg-7 col-xl-6">
         class="img-fluid" alt="Phone image">
-    </div>
+    </div> -->
     <!-- user input form -->
-    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+    <div class="col-lg-7 align-items-center justify-content-center" style="text-align:center;width: 300px;margin: 5px auto;border-style: dotted";>
+        <h3>Hi,</h3>
+        <div class="row" style="text-align: center;">
+            <p>
+                Search a topic below to see how people on twitter feel about it. 
+            </p>
+        </div>
         <form method="post">
             <input type="string" name="term" value=""/>
-            <input type="submit">
-        </form>
+            <input type="submit" title="Search">
+            
+        </form>      
+        <div class="card-results">
+            <h4>{{result.sentiment}}</h4>
+        </div>  
+        <div>
+            {% for keyword in result.keywords %}
+                <p>
+                    {{keyword}}
+                </p>
+            {%endfor%}
+        </div>
+
     </div>
-    
-    <p>{{result}}</p>
+
+
     
   </div>
 </div>

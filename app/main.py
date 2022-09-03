@@ -2,6 +2,7 @@ from re import template
 from fastapi import FastAPI, Query, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from app.twitterapi import *
 from app.texttools import *
 from app.schemas import *
@@ -14,6 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent
 #declare app
 app = FastAPI()
 
+app.mount("/static/", StaticFiles(directory=str(BASE_DIR/"static")),name="static")
+
 #set templates directory
 templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 
@@ -21,11 +24,11 @@ templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 #Get methods
 @app.get("/",response_class=HTMLResponse)
 async def get_index(request: Request):
-	return  templates.TemplateResponse("base.html", {"request":request}) #,{"message":"Landing Page Goes Here"}
+	return  templates.TemplateResponse("base.html", {"request":request}) 
 
 @app.get("/form")
 def form_post(request: Request):
-	result = "Type a search term"
+	result = ""
 	return templates.TemplateResponse("index.html",context={'request':request,'result':result})
 
 @app.post("/form")
@@ -42,12 +45,13 @@ def get_results(term: str | None =  Query(default = None,min_length=3, max_lengt
 			processed_results = [process_text(tweet) for tweet in raw_results]
 
 			sentiment = get_avg_sentiment(processed_results)	
-			keywords = get_keywords(processed_results,10)
+			keywords = get_keywords(processed_results,5)
 
-			results = {"sentiment" : sentiment,
+			results = {"sentiment" : sentiment[0],
+				"score": sentiment[1],
 				"keywords":keywords
 			}
-			return {"sentiment" : results}
+			return results
 		else:
 			return {"message":"nothing to seach"}
 	except Exception as e:
