@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-
-    <head>
-            
+    <head>     
         <title>Hum</title>
         <!-- add icon link -->    
         <!-- <link rel=icon href="https://skillicons.dev/icons?i=heroku"> -->
+        <link href="{{ url_for('static', path='/base.css') }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/4959c4e0cc.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
         <meta name="google" content="notranslate" />
@@ -14,14 +13,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous" />      
         <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"> </script>    
- 
     </head>
     <body>
-
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light collapse" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"> Hum: A Sentiment Site <i class="fa-solid fa-house"></i></a>
+                <a class="navbar-brand" href="/"> Hum: A Sentiment Site <i class="fa-solid fa-house"></i></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,14 +26,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#"><i class="fa-solid fa-mountain-sun"></i>About</a>
+                            <a class="nav-link text-black font-weight-bold" href="#"><i class="fa-solid fa-circle-info xl"></i></i>  About</a>
                         </li>
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#"><i class="fa-solid fa-money-bill-trend-up"></i> Trends</a>
+                            <a class="nav-link text-black font-weight-bold" href="/trends/"><i class="fa-solid fa-arrow-trend-up xl"></i>  Trends</a>
                         </li>
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#"><i class="fa-brands fa-github fa-xl"></i> </a>
+                            <a class="nav-link text-black font-weight-bold" href="https://github.com/ggsmith842/sentiment-api-hum"><i class="fa-brands fa-github fa-xl"></i> </a>
                         </li>
+                    </ul>
                 </div>
             </div>
         </nav>

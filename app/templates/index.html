@@ -2,6 +2,8 @@
 
 {% block content %}
 <link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <div class="container py-5 h-100">
   <!-- <div class="row d-flex align-items-center justify-content-center h-100"> -->
     <!-- side image -->
@@ -9,27 +11,18 @@
         class="img-fluid" alt="Phone image">
     </div> -->
     <!-- user input form -->
-    <div class="col-lg-7 align-items-center justify-content-center" style="text-align:center;width: 300px;margin: 5px auto;border-style: dotted";>
+    <div class="col-lg-7 " style="text-align:center;width: 350px;margin: 10px auto;border-style: dotted; align-items:center; justify-content:center;">
         <h3>Hi,</h3>
-        <div class="row" style="text-align: center;">
+        <div class="row" style="text-align: center; margin: 5px; align-items: center; justify-content: center;">
             <p>
-                Search a topic below to see how people on twitter feel about it. 
+                Search a topic below to see how people on twitter feel about it.     
             </p>
+            <i class="fa-solid fa-feather fa-xl" style="padding: 10px;"></i>
         </div>
-        <form method="post">
-            <input type="string" name="term" value=""/>
-            <input type="submit" title="Search">
-            
-        </form>      
-        <div class="card-results">
-            <h4>{{result.sentiment}}</h4>
-        </div>  
-        <div>
-            {% for keyword in result.keywords %}
-                <p>
-                    {{keyword}}
-                </p>
-            {%endfor%}
+            <form method="post" class="searchbar">
+                <input type="string" name="term" value=""/>
+                <input type="submit" title="Search">
+            </form>      
         </div>
 
     </div>

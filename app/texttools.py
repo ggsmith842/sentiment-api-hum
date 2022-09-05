@@ -41,8 +41,8 @@ def get_avg_sentiment(tweets):
 
     #buckets for sentiment. May rework with smaller range for neutral
     if term_sentiment < -0.20:
-        return ("negative", term_sentiment)
+        return ("Negative", term_sentiment)
     elif term_sentiment > 0.20:
-        return ("positive", term_sentiment)
+        return ("Positive", term_sentiment)
     else:
-        return ("neutral",term_sentiment)
+        return ("Neutral",term_sentiment)

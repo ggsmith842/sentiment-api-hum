@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div class="container py-5 h-100">
+  <!-- <div class="row d-flex align-items-center justify-content-center h-100"> -->
+    <!-- side image -->
+    <!-- <div class="col-md-8 col-lg-7 col-xl-6">
+        class="img-fluid" alt="Phone image">
+    </div> -->
+    <!-- user input form -->
+    <div class="col-lg-7 " style="text-align:center;width: 350px;margin: 10px auto;border-style: dotted; align-items:center; justify-content:center;">   
+            <div class="row plotly-fig" style="justify-content: center; padding-top: 15px;">
+                <h5 style="padding-top: 20px; margin-bottom: 0px;">{{result.sentiment}}</h4>
+                {%if result%}
+                    <iframe src="/visual" class="wrapped-iframe" title="gauge-chart"></iframe>
+                {%endif%}
+            </div> 
+
+            <div style="padding-bottom: 20px; display: inline;">
+                {% for keyword in result.keywords %}
+                    <p style="border: primary; border: radius 5px; display: inline-block;">
+                        <span style="border-style: solid; border-radius: 10px; border-width: 0.5px; padding: 4px; background: local; background-image:linear-gradient(to bottom right, #8FBCBB, #81A1C1);"> {{keyword}} </span> 
+                    </p>
+                {%endfor%}
+            </div>
+            <h4 style="padding-bottom: 10px;">Wanna go again?</h4>
+            <form method="post" style="padding-bottom: 10px;">
+                <input type="string" name="term" value=""/>
+                <input type="submit" title="Search">
+            </form>   
+
+    </div>
+
+
+    
+  </div>
+</div>
+{% endblock %}

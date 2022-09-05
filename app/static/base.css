@@ -1,0 +1,14 @@
+
+.nav {
+    font-size: large;
+}
+
+.navbar-collapse.collapse.in {
+    display: block!important;
+  }
+
+.btn-danger {
+    color: #fff;
+    background-color: #f00000;
+    border-color: #dc281e; 
+}

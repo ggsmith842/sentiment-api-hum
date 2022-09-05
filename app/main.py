@@ -1,14 +1,13 @@
 from re import template
-from fastapi import FastAPI, Query, Request, Form
+from fastapi import FastAPI, Query, Request, Form, APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from app.twitterapi import *
+from app.visuals import *
 from app.texttools import *
 from app.schemas import *
 from pathlib import Path
-
-
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -20,22 +19,19 @@ app.mount("/static/", StaticFiles(directory=str(BASE_DIR/"static")),name="static
 #set templates directory
 templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 
-
-#Get methods
-@app.get("/",response_class=HTMLResponse)
-async def get_index(request: Request):
-	return  templates.TemplateResponse("base.html", {"request":request}) 
-
-@app.get("/form")
+@app.get("/")
 def form_post(request: Request):
-	result = ""
-	return templates.TemplateResponse("index.html",context={'request':request,'result':result})
+	return templates.TemplateResponse("index.html",context={'request':request})
 
-@app.post("/form")
+@app.post("/")
 def form_post(request: Request, term: str = Form(...)):
 	result = get_results(term)
-	return templates.TemplateResponse("index.html",context={'request':request,'result':result})
+	figure = plot_sentiment(result['score'])
+	return templates.TemplateResponse("results.html",context={'request':request,'result':result})
 
+@app.get("/visual", response_class=HTMLResponse)
+def post_gauge(request: Request):
+	return templates.TemplateResponse("gauge.html", {"request":request})
 
 @app.get("/term/")
 def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
@@ -84,5 +80,5 @@ async def create_item(item: Item):
 	return item_dict
 
 
-	
+
 	

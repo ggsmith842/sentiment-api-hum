@@ -1,0 +1,33 @@
+#jupyter
+*.ipynb
+
+# Git
+.git
+.gitignore
+.gitattributes
+.github
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentation
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# Visual Studio Code (optional)
+.vscode
+
+# Environments
+.env
+.venv
+env/
+fastvenv/
+fastvenv
+ENV/
+env.bak/
+venv.bak/
