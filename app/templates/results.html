@@ -11,26 +11,30 @@
         class="img-fluid" alt="Phone image">
     </div> -->
     <!-- user input form -->
-    <div class="col-lg-7 " style="text-align:center;width: 350px;margin: 10px auto;border-style: dotted; align-items:center; justify-content:center;">   
-            <div class="row plotly-fig" style="justify-content: center; padding-top: 15px;">
-                <h5 style="padding-top: 20px; margin-bottom: 0px;">{{result.sentiment}}</h4>
+    <div class="col-lg-7 result-box " style="text-align:center;width: 350px;margin: 10px auto; align-items:center; justify-content:center;">   
+            <div class="row plotly-fig" style="justify-content: center; padding-top: 25px; padding-bottom: 25px;">  
+                <h5 style="padding-top: 20px; margin-bottom: 0px;">Overall Sentiment for <br> {{term}} <br> is <br> {{result.sentiment}}</h4>
                 {%if result%}
                     <iframe src="/visual" class="wrapped-iframe" title="gauge-chart"></iframe>
                 {%endif%}
             </div> 
 
-            <div style="padding-bottom: 20px; display: inline;">
+            <div style="padding-bottom: 25px; padding-top: 5px; display: inline;">
+                <h4 style="padding-bottom: 10px;"> Keywords in tweets
+
+                </h4>
                 {% for keyword in result.keywords %}
                     <p style="border: primary; border: radius 5px; display: inline-block;">
                         <span style="border-style: solid; border-radius: 10px; border-width: 0.5px; padding: 4px; background: local; background-image:linear-gradient(to bottom right, #8FBCBB, #81A1C1);"> {{keyword}} </span> 
                     </p>
                 {%endfor%}
             </div>
-            <h4 style="padding-bottom: 10px;">Wanna go again?</h4>
-            <form method="post" style="padding-bottom: 10px;">
-                <input type="string" name="term" value=""/>
-                <input type="submit" title="Search">
-            </form>   
+            <h4 style="padding-bottom: 15px; padding-bottom: 15px;">Wanna go again?</h4>
+            <form method="post" class="searchbar" >
+                <input type="string" name="term" value="" style="border:none; border:1px; border-radius: 5px;" required/>
+                <input type="submit" title="Search" style="border:none; border:1px; border-radius: 5px;">
+
+            </form>
 
     </div>
 

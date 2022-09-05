@@ -16,9 +16,11 @@
     </head>
     <body>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light collapse" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light collapse" id="mainNav" style="background-color:#D8DEE9">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"> Hum: A Sentiment Site <i class="fa-solid fa-house"></i></a>
+                <div class="title">
+                    <a class="navbar-brand" href="/"> Hum: A Sentiment Site <i class="fa-solid fa-house"></i> </a>
+                </div>        
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,9 +44,11 @@
         <!-- Content Goes here -->
         {% endblock content %}
         <!-- Footer -->
-        <footer class="py-3 bg-grey">
+        <footer class="py-3 bg-grey footer-cust">
             <!-- <p class="m-0 text-dark text-center ">Copyright &copy; Articulate Badger</p> -->
-            <p class="m-0 text-dark text-center ">Built by MuirApps <i class="fa-solid fa-mountain-sun"></i></p>
+            <i class="fa-solid fa-mountain-sun fa-xl"></i>
+            <p class="m-0 text-dark text-center">Built by MuirApps</i> </p>
+            <a href="https://developer.twitter.com/en/products/twitter-api"> Using Twitter API <i class="fa-brands fa-twitter"></i></a>
         </footer>
     </body>
 </html>

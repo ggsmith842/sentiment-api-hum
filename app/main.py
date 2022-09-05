@@ -8,6 +8,7 @@ from app.visuals import *
 from app.texttools import *
 from app.schemas import *
 from pathlib import Path
+from datetime import date
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -26,8 +27,8 @@ def form_post(request: Request):
 @app.post("/")
 def form_post(request: Request, term: str = Form(...)):
 	result = get_results(term)
-	figure = plot_sentiment(result['score'])
-	return templates.TemplateResponse("results.html",context={'request':request,'result':result})
+	plot_sentiment(result['score'])
+	return templates.TemplateResponse("results.html",context={'request':request,'result':result, 'term':term})
 
 @app.get("/visual", response_class=HTMLResponse)
 def post_gauge(request: Request):
@@ -62,22 +63,22 @@ async def get_tweets(term: str | None = Query(default=None, min_length=3, max_le
 		return {'message':'no results'}
 
 @app.get("/trends/")
-async def get_trends():
+def get_trends(request: Request):
+	curr_date = date.today().strftime("%m/%d/%y")
 	try:
-		response = call_trends()
-		return response
-	except:
-		return {'message':'An error occured'}
+		result = call_trends()
+		return templates.TemplateResponse("trends.html", context={'request':request,'result':result, 'date':curr_date})
+	except Exception as e:
+		return {'message':'An error occured',"error": e}
 
-
-#POST
-@app.post("/items/")
-async def create_item(item: Item):
-	item_dict = item.dict()
-	if item.tax:
-		price_with_tax = item.price + item.tax
-		item_dict.update({"price_with_tax": price_with_tax})
-	return item_dict
+# #POST
+# @app.post("/items/")
+# async def create_item(item: Item):
+# 	item_dict = item.dict()
+# 	if item.tax:
+# 		price_with_tax = item.price + item.tax
+# 		item_dict.update({"price_with_tax": price_with_tax})
+# 	return item_dict
 
 
 

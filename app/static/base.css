@@ -1,6 +1,17 @@
 
+.navbar-brand {
+    margin-bottom: 0px;
+}
+
 .nav {
     font-size: large;
+    background-color: aqua;
+}
+
+.title {
+    float: left;
+    text-align:left;
+    margin-bottom: 0px;
 }
 
 .navbar-collapse.collapse.in {
@@ -11,4 +22,11 @@
     color: #fff;
     background-color: #f00000;
     border-color: #dc281e; 
+}
+
+.footer-cust {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: large;
 }

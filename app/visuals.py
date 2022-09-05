@@ -26,8 +26,9 @@ def plot_sentiment(score):
 
     fig.update_layout(
         margin=dict(l=20, r=20, t=0, b=0),
+        paper_bgcolor="#D8DEE9"
     )
-
+   
     config_dict = {'displayModeBar': False}
     fig.write_html("app/templates/gauge.html",
                 full_html=False,

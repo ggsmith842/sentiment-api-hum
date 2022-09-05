@@ -11,24 +11,24 @@
         class="img-fluid" alt="Phone image">
     </div> -->
     <!-- user input form -->
-    <div class="col-lg-7 " style="text-align:center;width: 350px;margin: 10px auto;border-style: dotted; align-items:center; justify-content:center;">
-        <h3>Hi,</h3>
-        <div class="row" style="text-align: center; margin: 5px; align-items: center; justify-content: center;">
+    <div class="col-lg-7 main-search">
+        <h3 class="hi">Hi,</h3>
+        <div class="row welcome-text" style="text-align: center; margin: 10px; align-items: center; justify-content: center;">
             <p>
                 Search a topic below to see how people on twitter feel about it.     
             </p>
-            <i class="fa-solid fa-feather fa-xl" style="padding: 10px;"></i>
+            <i class="fa-solid fa-feather fa-2xl" style="padding: 15px;"></i>
         </div>
-            <form method="post" class="searchbar">
-                <input type="string" name="term" value=""/>
-                <input type="submit" title="Search">
+            <form method="post" class="searchbar" >
+                <input type="string" name="term" value="" style="border:none; border:1px; border-radius: 5px;" required/>
+                <input type="submit" title="Search" style="border:none; border:1px; border-radius: 5px;">
+
             </form>      
+            <hr style="margin: 25px; color: #1e222a;">
+            <p> or <br> check out what's trending</p>
+            <a class="aref-trends" href="/trends/" style="color: #4C566A;" >Trends</a>
         </div>
-
     </div>
-
-
-    
   </div>
 </div>
 {% endblock %}

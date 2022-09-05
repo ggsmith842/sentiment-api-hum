@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+<link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
+{% block content %}
+
+<div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <!-- side image -->
+      <div class="col-md-7 col-lg-5 col-xl-5" style="padding-bottom: 15px;">
+        <h3 style="padding-bottom:10px ;"> Trending on {{date}}</h3>
+        <img src="{{ url_for('static', path='twitter_trends_gold.svg') }}" alt="" height="100%" width="100%">
+      </div>
+      <!-- trend output -->
+      <div class="col-md-8 col-lg-7 col-xl-6 offset-xl-1 align-items-center">
+        {% for trend in result%}
+        <p style="border: primary; border: radius 5px; display:inline-table ;">
+            <span style="border-style: solid; border-radius: 10px; border-width: 0.5px; padding: 4px; background: local; background-image:linear-gradient(to bottom right, #00acee, #d6e1ec);"> {{trend}} </span> 
+        </p>
+        {%endfor%}
+      </div>
+    </div>
+</div>
+{%endblock%}
