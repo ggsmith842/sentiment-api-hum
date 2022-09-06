@@ -1,6 +1,4 @@
 import plotly.graph_objects as go
-from plotly.offline import plot
-#pip install kaleido?
 
 def plot_sentiment(score):
         

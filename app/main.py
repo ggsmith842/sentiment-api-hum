@@ -1,12 +1,10 @@
-from re import template
-from fastapi import FastAPI, Query, Request, Form, APIRouter
+from fastapi import FastAPI, Request, Form, Query
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from app.twitterapi import *
 from app.visuals import *
 from app.texttools import *
-from app.schemas import *
 from pathlib import Path
 from datetime import date
 
@@ -55,7 +53,7 @@ def get_results(term: str | None =  Query(default = None,min_length=3, max_lengt
 		return {"error":e}
 
 @app.get("/tweets/")
-async def get_tweets(term: str | None = Query(default=None, min_length=3, max_length=25)):
+def get_tweets(term: str | None = Query(default=None, min_length=3, max_length=25)):
 	if term:
 		raw_results = searchTweets(term)
 		return raw_results
@@ -71,15 +69,3 @@ def get_trends(request: Request):
 	except Exception as e:
 		return {'message':'An error occured',"error": e}
 
-# #POST
-# @app.post("/items/")
-# async def create_item(item: Item):
-# 	item_dict = item.dict()
-# 	if item.tax:
-# 		price_with_tax = item.price + item.tax
-# 		item_dict.update({"price_with_tax": price_with_tax})
-# 	return item_dict
-
-
-
-	

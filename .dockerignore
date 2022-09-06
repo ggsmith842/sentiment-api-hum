@@ -1,6 +1,26 @@
 #jupyter
 *.ipynb
 
+#python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.mypy_cache
+.pytest_cache
+.hypothesis
+
 # Git
 .git
 .gitignore
@@ -24,6 +44,7 @@ SECURITY.md
 
 # Environments
 .env
+env
 .venv
 env/
 fastvenv/
@@ -31,3 +52,4 @@ fastvenv
 ENV/
 env.bak/
 venv.bak/
+

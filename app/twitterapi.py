@@ -1,4 +1,3 @@
-from urllib import response
 import requests
 import os
 from dotenv import load_dotenv
@@ -41,5 +40,3 @@ def call_trends():
   except Exception as e:
     error_message = f"An error occured in call_trends(): {e}"
     return error_message
-
-
