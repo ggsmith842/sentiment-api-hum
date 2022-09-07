@@ -11,9 +11,9 @@
         class="img-fluid" alt="Phone image">
     </div> -->
     <!-- user input form -->
-    <div class="col-lg-7 result-box " style="text-align:center;width: 350px;margin: 10px auto; align-items:center; justify-content:center;">   
-            <div class="row plotly-fig" style="justify-content: center; padding-top: 25px; padding-bottom: 25px;">  
-                <h5 style="padding-top: 20px; margin-bottom: 0px;">Overall Sentiment for <br> {{term}} <br> is <br> {{result.sentiment}}</h4>
+    <div class="result-box col-lg-8" style="text-align:center;width: 350px;margin: 15px auto; align-items:center; justify-content:center; background-image:linear-gradient(to bottom right, #00acee, #D8DEE9);">   
+            <div class="row plotly-fig" style="justify-content: center; padding-top: 15px; padding-bottom: 25px; ">  
+                <h5 style="padding-top: 15px; margin-bottom: 0px;">Overall Sentiment for <br> {{term}} <br> is <br> {{result.sentiment}}</h4>
                 {%if result%}
                     <iframe src="/visual" class="wrapped-iframe" title="gauge-chart"></iframe>
                 {%endif%}
@@ -25,21 +25,25 @@
                 </h4>
                 {% for keyword in result.keywords %}
                     <p style="border: primary; border: radius 5px; display: inline-block;">
-                        <span style="border-style: solid; border-radius: 10px; border-width: 0.5px; padding: 4px; background: local; background-image:linear-gradient(to bottom right, #8FBCBB, #81A1C1);"> {{keyword}} </span> 
+                        <span style="border-style: solid; border-radius: 10px; border-width: 0.5px; padding: 4px; background: local; background-image:linear-gradient(to bottom right, #ebe08b, #F0A00A);"> {{keyword}} </span> 
                     </p>
                 {%endfor%}
-            </div>
-            <h4 style="padding-bottom: 15px; padding-bottom: 15px;">Wanna go again?</h4>
+            
+            
+        <h4 style="padding-bottom: 15px; padding-bottom: 5px;">Wanna go again?</h4>
             <form method="post" class="searchbar" >
-                <input type="string" name="term" value="" style="border:none; border:1px; border-radius: 5px;" required/>
+                <input type="string" name="term" value="" style="border:none; border:1px; border-radius: 5px; margin: 10px;" required/>
                 <input type="submit" title="Search" style="border:none; border:1px; border-radius: 5px;">
-
             </form>
+            <p>Like what you see? </p>
+            <p>                        <a class="donate" style="    background-color: #ebe08b; border: solid; border-width: 1px; border-color: #ebe08b; color:black; border-radius: 20px; padding: 3px 48px;" 
+                href="https://www.paypal.com/donate/?business=WX4NWUQKPPDK4&no_recurring=1&currency_code=USD">Buy me a beer 
+                <i class="fa-solid fa-beer-mug-empty"></i>
+            </a></p>
+        </div>
 
     </div>
 
-
     
-  </div>
 </div>
 {% endblock %}

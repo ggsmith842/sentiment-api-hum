@@ -44,6 +44,7 @@ SECURITY.md
 
 # Environments
 .env
+.bak
 env
 .venv
 env/

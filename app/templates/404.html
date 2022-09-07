@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div class="container py-5 h-100" style="margin: 0 auto; align-items: center;">
+    <div class="col-lg-7" style="align-items: center; text-align: center;"></div>
+    <h4 style="margin: 10px; padding-bottom: 15px; text-align: center;">Uh-oh! Looks like we have a bug to fix. :(</h4>
+    <div style="align-items: center; text-align:center">
+        <img src="{{ url_for('static', path='error_image.svg') }}" alt="" height="50%" width="50%">
+    </div>
+    <div style="text-align: center; display: inline; margin: 10px">
+        <p> Found a mistake? Head to GitHub 
+            <a class="nav-link text-black font-weight-bold" href="https://github.com/ggsmith842/sentiment-api-hum">
+                <i class="fa-brands fa-github fa-xl"></i> 
+            </a>
+        </p>
+    </div>
+    
+    
+</div>
+{% endblock %}

@@ -20,17 +20,26 @@ templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 
 @app.get("/")
 def form_post(request: Request):
-	return templates.TemplateResponse("index.html",context={'request':request})
+	try:
+		return templates.TemplateResponse("index.html",context={'request':request})
+	except:
+		return templates.TemplateResponse("404.html",context={'request':request})
 
 @app.post("/")
-def form_post(request: Request, term: str = Form(...)):
-	result = get_results(term)
-	plot_sentiment(result['score'])
-	return templates.TemplateResponse("results.html",context={'request':request,'result':result, 'term':term})
+def form_post(request: Request, term: str = Form(...,min_length=3,max_length=25)):
+	try:
+		result = get_results(term)
+		plot_sentiment(result['score'])
+		return templates.TemplateResponse("results.html",context={'request':request,'result':result, 'term':term})
+	except:
+		return templates.TemplateResponse("404.html",context={'request':request})
 
 @app.get("/visual", response_class=HTMLResponse)
 def post_gauge(request: Request):
-	return templates.TemplateResponse("gauge.html", {"request":request})
+	try:
+		return templates.TemplateResponse("gauge.html", {"request":request})
+	except:
+		return templates.TemplateResponse("404.html",context={'request':request})
 
 @app.get("/term/")
 def get_results(term: str | None =  Query(default = None,min_length=3, max_length=25)):
@@ -67,5 +76,8 @@ def get_trends(request: Request):
 		result = call_trends()
 		return templates.TemplateResponse("trends.html", context={'request':request,'result':result, 'date':curr_date})
 	except Exception as e:
-		return {'message':'An error occured',"error": e}
+		return templates.TemplateResponse("404.html",context={'request':request})
 
+@app.get("/error")
+def form_post(request: Request):
+		return templates.TemplateResponse("404.html",context={'request':request})

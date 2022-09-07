@@ -24,7 +24,8 @@ def plot_sentiment(score):
 
     fig.update_layout(
         margin=dict(l=20, r=20, t=0, b=0),
-        paper_bgcolor="#D8DEE9"
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)'
     )
    
     config_dict = {'displayModeBar': False}

@@ -18,6 +18,7 @@
     border-style: solid; 
     border-radius: 15px;
     background-image:linear-gradient(to bottom right, #00acee, #D8DEE9);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items:center; 
     justify-content:center;
 }
@@ -34,12 +35,18 @@
     padding-top: 10px;
 }
 
-
-
 .result-box {
-    background-color: #D8DEE9;
+    text-align:center;
+    width: 350px;
+    height: auto;
+    margin: 15px auto;
+    padding-bottom: 15px;
+    align-items:center;
+    justify-content:center;
+    background-image:linear-gradient(to bottom right, #00acee, #D8DEE9);
+    background-color: #00acee;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-width: 2px;
 }
@@ -84,8 +91,19 @@
     font-size: 22px;
   }
 
+.donate {
+    background-color: #ebe08b;
+    border: solid;
+    border-width: 1px;
+    border-color: #ebe08b;
+    border-radius: 20px;
+    padding: 3px 48px;
+    padding-bottom: 10px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+  }
 
-
-  
 
 

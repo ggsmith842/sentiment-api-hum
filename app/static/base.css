@@ -5,7 +5,6 @@
 
 .nav {
     font-size: large;
-    background-color: aqua;
 }
 
 .title {
@@ -29,4 +28,8 @@
     align-content: center;
     text-align: center;
     font-size: large;
+    position: absolute;
+    bottom: 0;
 }
+
+  
