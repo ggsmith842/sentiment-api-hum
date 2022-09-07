@@ -1,0 +1,43 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <!-- side image -->
+      <div class="col-md-8 col-lg-7 col-xl-6" style="padding-bottom: 15px; ">
+        <h3>About Hum</h3>
+        <p>
+            I started Hum mostly to learn the <a href="https://fastapi.tiangolo.com/"> FastAPI</a> framework and get better at API development. 
+            But I didn't get to be as creative as I would like only working on the backend. So now here you are hopefully enjoying the HTML I've left for you. 
+            I guarantee you its better than just getting an ugly little json message. Though maybe I'll work on adding that capability for those who just want an API endpoint. 
+            Also, this site doesn't collect any of your data! :) Your browser may keep a few cookies from your search terms but that's all. You can disable those in the browser settings. 
+            
+        </p>
+        <p>
+            <strong>What's next?</strong><br>
+            No project is perfect and I'd say this one is functional at best. A few things I sped through for the sake of time and other I just wasn't motivated to learn right now. 
+            The model used for the sentiment score is the NLTK out-of-the-box model. I really didn't want to go through the whole process of training a model specifically for Tweets but 
+            I believe that would result in some significant improvements in the accuracy of the sentiment analysis. The team at <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest"> huggingface.co</a> have a really cool looking model I may investigate. My only concern is 
+            how much more storage it will require and if there will be any impact on perforance. 
+        </p>
+        <p>
+            It may also be cool to implement some geographic visual as well. Showing the top trends and where they are occuring would be cool but it if it has too much of an impact on perfomance I 
+            don't know if its a good tradeoff.
+        </p>
+        <p>
+            <strong>Last but not least...</strong>
+            Thank you for visiting! I hope you enjoyed the site and if you have any suggestions please head over to the GitHub repository and leave a comment. 
+            I'm not overly protective of my code so use it however you like! I do like a good beer however, so if you gained anything from the site or the code 
+            say thanks with the <a href="https://www.paypal.com/donate/?business=WX4NWUQKPPDK4&no_recurring=1&currency_code=USD"> donate </a><i class="fa-solid fa-beer-mug-empty"></i> button.
+
+        </p>
+        
+      </div>
+      
+      <div class="col-md-7 col-lg-5 col-xl-5 align-items-center" style="text-align: center;">
+        <img src="{{ url_for('static', path='undraw_designer.svg') }}" alt="" height="80%" width="80%">
+      </div>
+    </div>
+</div>
+{%endblock%}

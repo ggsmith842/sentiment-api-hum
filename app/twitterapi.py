@@ -18,8 +18,11 @@ def searchTweets(search_term:str):
 
   try:
     response = requests.request("GET", url, headers=headers, data=payload).json()['includes']['tweets']
-    tweets = [i['text'] for i in response]
-    return tweets
+    if len(response)<5:
+      return 0
+    else:
+      tweets = [i['text'] for i in response]
+      return tweets
   except Exception as e:
     error_message = f"An error occured in searchTweets(): {e}"
     return error_message

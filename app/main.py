@@ -28,7 +28,7 @@ def form_post(request: Request):
 @app.post("/")
 def form_post(request: Request, term: str = Form(...,min_length=3,max_length=25)):
 	try:
-		result = get_results(term)
+		result = get_results(re.sub('\W','',term))
 		plot_sentiment(result['score'])
 		return templates.TemplateResponse("results.html",context={'request':request,'result':result, 'term':term})
 	except:
@@ -46,16 +46,19 @@ def get_results(term: str | None =  Query(default = None,min_length=3, max_lengt
 	try:	
 		if term:
 			raw_results = searchTweets(term)
-			processed_results = [process_text(tweet) for tweet in raw_results]
+			if not raw_results:
+				return Exception
+			else:
+				processed_results = [process_text(tweet) for tweet in raw_results]
 
-			sentiment = get_avg_sentiment(processed_results)	
-			keywords = get_keywords(processed_results,5)
+				sentiment = get_avg_sentiment(processed_results)	
+				keywords = get_keywords(processed_results,5)
 
-			results = {"sentiment" : sentiment[0],
-				"score": sentiment[1],
-				"keywords":keywords
-			}
-			return results
+				results = {"sentiment" : sentiment[0],
+					"score": sentiment[1],
+					"keywords":keywords
+				}
+				return results
 		else:
 			return {"message":"nothing to seach"}
 	except Exception as e:
@@ -79,5 +82,9 @@ def get_trends(request: Request):
 		return templates.TemplateResponse("404.html",context={'request':request})
 
 @app.get("/error")
-def form_post(request: Request):
+def get_error(request: Request):
 		return templates.TemplateResponse("404.html",context={'request':request})
+
+@app.get("/about/")
+def get_about(request: Request):
+		return templates.TemplateResponse("about.html",context={'request':request})
