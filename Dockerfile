@@ -9,4 +9,4 @@ RUN python -m nltk.downloader punkt stopwords vader_lexicon averaged_perceptron_
 
 COPY ./app /myfastapi/app
 
-CMD ["uvicorn", "app.main:app","--host","0.0.0.0","--port","80"]
+CMD ["uvicorn", "app.main:app","--proxy-headers","--host","0.0.0.0","--port","80"] 
